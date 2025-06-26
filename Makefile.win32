@@ -4,7 +4,9 @@
 # "../naviserver/Makefile.win32", NOT directly.
 #
 
+!ifndef ORACLE_HOME
 ORACLE_HOME = C:\P\oracle\instantclient_19_6
+!endif
 ora_inc_dir = $(ORACLE_HOME)\sdk\include
 ora_lib_dir = $(ORACLE_HOME)\sdk\lib\msvc
 
@@ -20,7 +22,8 @@ MOD = nsoracle.so
 DLL = nsoracle
 MODOBJS = nsoracle.o
 NS_DB_P=1
-DEFS = /I $(ora_inc_dir)
+DEFS = $(DEFS) /I $(ora_inc_dir) /I $(NS_DIR)\nsdb
+
 LIBS =  /LIBPATH:$(ora_lib_dir) oci.lib
 
 !include "$(NS_DIR)\include\Makefile.win32"
